@@ -11,10 +11,10 @@ class Food:
         self.popularity_rating = popularity_rating
 
     def get_quantity(self):
-        pass
+        return self.quantity
 
     def add_quantity(self, amount):
-        pass
+        self.quantity += amount
 
 
 class Menu:
@@ -22,31 +22,36 @@ class Menu:
         self.items = []
 
     def add_item(self, food):
-        pass
+        self.items.append(food)
 
     def get_all_items(self):
-        pass
+        return self.items
 
     def filter_by_category(self, category):
-        pass
+        # Returns a list of Food items whose category matches the given category string
+        return [item for item in self.items if item.category == category]
 
 
 class Transaction:
     def __init__(self, items):
         self.items = items
-        self.total_cost = 0.0
+        self.total_cost = self.compute_total()
 
     def compute_total(self):
-        pass
+        # Sums the price of all Food items in self.items and returns the total as a float
+        return sum(item.price for item in self.items)
 
 
 class Customer:
-    def __init__(self, name, transaction_id):
+    def __init__(self, name):
         self.name = name
-        self.transaction_id = transaction_id
+        self.transactions = []
 
     def login(self):
-        pass
+        return True
+
+    def add_transaction(self, transaction):
+        self.transactions.append(transaction)
 
     def purchase_history(self):
-        pass
+        return self.transactions
